@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+  <style>
+
+    /* Styles for the authentication section and modal */
+#auth-section {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#auth-button, #logout {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+  </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#ff6600">
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+</head>
+<body>
+    <header>
+        <h1>EDU HUB</h1>
+        <div id="auth-section">
+            <button id="auth-button">Login / Signup</button>
+            <span id="user-name" class="hidden"></span>
+            <button id="logout" class="hidden">Logout</button>
+        </div>
+    </header>
+
+    <!-- Authentication Popup Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login / Signup</h2>
+            <button id="google-login">Sign in with Google</button>
+        </div>
+    </div>
+
+    <!-- Firebase Configuration and Initialization -->
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJVzWcSVu7nW-069bext5W6Nizx4sfxIA",
+            authDomain: "edu-hub-c81b5.firebaseapp.com",
+            projectId: "edu-hub-c81b5",
+            storageBucket: "edu-hub-c81b5.appspot.com",
+            messagingSenderId: "560742513136",
+            appId: "1:560742513136:web:102edd272982704fdb8535",
+            measurementId: "G-78TC8XTPF7"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
+
+    <!-- JavaScript for Authentication and Modal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const authButton = document.getElementById('auth-button');
+            const authModal = document.getElementById('auth-modal');
+            const closeModal = document.querySelector('.close');
+            const googleLoginButton = document.getElementById('google-login');
+            const userNameSpan = document.getElementById('user-name');
+            const logoutButton = document.getElementById('logout');
+
+            authButton.addEventListener('click', () => {
+                authModal.classList.remove('hidden');
+            });
+
+            closeModal.addEventListener('click', () => {
+                authModal.classList.add('hidden');
+            });
+
+            googleLoginButton.addEventListener('click', () => {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                auth.signInWithPopup(provider)
+                    .then((result) => {
+                        const user = result.user;
+                        userNameSpan.textContent = `Hello, ${user.displayName}`;
+                        userNameSpan.classList.remove('hidden');
+                        authModal.classList.add('hidden');
+                        authButton.classList.add('hidden');
+                        logoutButton.classList.remove('hidden');
+                    })
+                    .catch((error) => {
+                        console.error('Error during Google sign-in:', error);
+                    });
+            });
+
+            logoutButton.addEventListener('click', () => {
+                auth.signOut().then(() => {
+                    userNameSpan.classList.add('hidden');
+                    authButton.classList.remove('hidden');
+                    logoutButton.classList.add('hidden');
+                }).catch((error) => {
+                    console.error('Error during sign-out:', error);
+                });
+            });
+
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    userNameSpan.textContent = `Hello, ${user.displayName}`;
+                    userNameSpan.classList.remove('hidden');
+                    authButton.classList.add('hidden');
+                    logoutButton.classList.remove('hidden');
+                } else {
+                    userNameSpan.classList.add('hidden');
+                    authButton.classList.remove('hidden');
+                    logoutButton.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
