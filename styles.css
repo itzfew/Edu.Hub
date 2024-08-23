@@ -1,0 +1,112 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 20px;
+    border-top: 4px solid #ff6600;
+}
+
+/* Blog Layout */
+.blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.blog-posts article {
+    border: 2px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.blog-posts article:hover {
+    transform: scale(1.02);
+}
+
+.blog-posts img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.share-buttons {
+    margin-top: 10px;
+}
+
+.share-buttons a {
+    margin-right: 10px;
+}
+
+.share-buttons img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Controls */
+#controls {
+    margin: 20px;
+    text-align: center;
+}
+
+#controls .btn {
+    background-color: #ff6600;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#controls .btn:hover {
+    background-color: #e65c00;
+}
+
+#controls .dropdown {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* Post Content */
+#post-content {
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.author-tick {
+    color: green;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+/* Add some spacing for author section */
+#post-content p {
+    margin-bottom: 20px;
+}

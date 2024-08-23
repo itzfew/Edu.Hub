@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>My Dynamic Blog</h1>
+    </header>
+
+    <section id="controls">
+        <button class="btn" onclick="sortPosts('date')">Sort by Date</button>
+        <button class="btn" onclick="sortPosts('title')">Sort by Title</button>
+        <label for="filter">Filter by Category:</label>
+        <select id="filter" onchange="filterPosts()" class="dropdown">
+            <option value="">All Categories</option>
+            <option value="Development">Development</option>
+            <option value="Design">Design</option>
+        </select>
+    </section>
+
+    <section id="blog-posts" class="blog-posts">
+        <!-- Blog posts will be loaded here by JavaScript -->
+    </section>
+
+    <footer>
+        <p>© 2024 My Dynamic Blog</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
