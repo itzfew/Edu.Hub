@@ -6,9 +6,104 @@
     <title>Blog Home</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#ff6600">
+</head>
+<body>
+    <header>
+        <h1>EDU HUB</h1>
+    </header>
+    
+    <section id="utility-buttons">
+        <!-- Utility buttons go here -->
+    </section>
+
+    <section id="category-buttons">
+        <h2>Explore Topics</h2>
+        <!-- Category buttons go here -->
+    </section>
+
+    <section id="controls">
+        <button class="btn" onclick="sortPosts('date')">Sort by Date</button>
+        <button class="btn" onclick="sortPosts('title')">Sort by Title</button>
+        <label for="filter">Filter by Category:</label>
+        <select id="filter" onchange="filterPosts()" class="dropdown">
+            <option value="">All Categories</option>
+            <option value="Education">EDUCATION</option>
+            <!-- Other categories if needed -->
+        </select>
+    </section>
+
+    <section id="blog-posts" class="blog-posts">
+        <!-- Blog posts will be loaded here by JavaScript -->
+    </section>
+
+    <footer>
+        <p>© 2024 My Dynamic Blog</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>My Dynamic Blog</h1>
+    </header>
+
+    <section id="post-content">
+        <!-- Post content will be loaded here by JavaScript -->
+    </section>
+
+    <footer>
+        <p>© 2024 Edu Hub</p>
+    </footer>
+
+    <script src="js/post.js"></script>
+</body>
+</html>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <link rel="stylesheet" href="css/styles.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <h1>My Dynamic Blog</h1>
+    </header>
+
+    <section id="post-content">
+        <!-- Post content will be loaded here by JavaScript -->
+    </section>
+
+    <footer>
+        <p>© 2024 My Dynamic Blog</p>
+    </footer>
+
+    <script src="js/post.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#ff6600">
-
 </head>
 <body>
     <header>
@@ -73,54 +168,9 @@
     </section>
 
     <footer>
-        <p>© 2024 Edu Hub</p>
+        <p>© 2024 My Dynamic Blog</p>
     </footer>
-    <!-- Install Button -->
-    <button id="install-button" class="install-btn hidden">
-        <i class="fas fa-download"></i>
-    </button>
-<!-- Service Worker registration script -->
-    <script>
-        let deferredPrompt;
-        const installButton = document.getElementById('install-button');
 
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(error => {
-                        console.error('ServiceWorker registration failed: ', error);
-                    });
-            });
-        }
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installButton.classList.remove('hidden');
-        });
-
-        installButton.addEventListener('click', () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the A2HS prompt');
-                    } else {
-                        console.log('User dismissed the A2HS prompt');
-                    }
-                    deferredPrompt = null;
-                });
-            }
-        });
-
-        window.addEventListener('appinstalled', () => {
-            console.log('PWA was installed');
-            installButton.classList.add('hidden');
-        });
-    </script>
-
+    <script src="js/main.js"></script>
 </body>
 </html>
