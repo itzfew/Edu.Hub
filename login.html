@@ -3,167 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Home</title>
-    <link rel="stylesheet" href="css/styles.css">
-  <style>
+    <title>Firebase Auth Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
 
-    /* Styles for the authentication section and modal */
-#auth-section {
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+#auth-container {
+    text-align: center;
+}
+
+#auth-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    width: 350px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#close-popup {
     position: absolute;
     top: 10px;
-    left: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
 }
 
-#auth-button, #logout {
-    background-color: #ff6600;
+h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+#auth-options {
+    margin-top: 20px;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.google-btn {
+    background-color: #db4437;
+    color: white;
+}
+
+.google-btn:hover {
+    background-color: #c1351d;
+}
+
+.divider {
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid #ddd;
+    position: absolute;
+    width: 45%;
+    top: 50%;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#auth-form input {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#auth-form button {
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.4); 
-    padding-top: 60px;
+#auth-form button:hover {
+    background-color: #0056b3;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
+#auth-message {
+    color: red;
+    margin-top: 10px;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+#auth-toggle {
+    margin-top: 15px;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
+#auth-toggle p {
+    margin: 5px 0;
+}
+
+#auth-toggle a {
+    color: #007bff;
     text-decoration: none;
+}
+
+#auth-toggle a:hover {
+    text-decoration: underline;
+}
+
+#user-info {
+    margin-top: 20px;
+}
+
+#user-info button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-.hidden {
-    display: none;
+#user-info button:hover {
+    background-color: #c82333;
 }
 
-  </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <meta name="theme-color" content="#ff6600">
-
-    <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+        
+    </style>
 </head>
 <body>
-    <header>
-        <h1>EDU HUB</h1>
-        <div id="auth-section">
-            <button id="auth-button">Login / Signup</button>
-            <span id="user-name" class="hidden"></span>
-            <button id="logout" class="hidden">Logout</button>
+    <div id="auth-container">
+        <div id="user-info" class="hidden">
+            <span id="user-name"></span>
+            <button id="logout-btn">Logout</button>
         </div>
-    </header>
-
-    <!-- Authentication Popup Modal -->
-    <div id="auth-modal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Login / Signup</h2>
-            <button id="google-login">Sign in with Google</button>
+        <button id="show-auth-btn" class="hidden">Sign Up / Login</button>
+        <div id="auth-popup" class="hidden">
+            <div class="popup-content">
+                <span id="close-popup">&times;</span>
+                <h2 id="auth-header">Welcome</h2>
+                <p id="auth-instruction">Please choose an option to proceed:</p>
+                <div id="auth-options">
+                    <button id="google-signup" class="auth-button google-btn">Continue with Google</button>
+                    <div class="divider">or</div>
+                    <div class="form-container">
+                        <form id="auth-form">
+                            <input type="email" id="email" placeholder="Email" required>
+                            <input type="password" id="password" placeholder="Password" required>
+                            <button type="submit" class="auth-button">Submit</button>
+                            <div id="auth-message"></div>
+                        </form>
+                        <div id="auth-toggle">
+                            <p><a href="#" id="forgot-password">Forgot Password?</a></p>
+                            <p>Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
+                            <p>Already have an account? <a href="#" id="show-login">Log In</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Firebase Configuration and Initialization -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAJVzWcSVu7nW-069bext5W6Nizx4sfxIA",
-            authDomain: "edu-hub-c81b5.firebaseapp.com",
-            projectId: "edu-hub-c81b5",
-            storageBucket: "edu-hub-c81b5.appspot.com",
-            messagingSenderId: "560742513136",
-            appId: "1:560742513136:web:102edd272982704fdb8535",
-            measurementId: "G-78TC8XTPF7"
-        };
+        // Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAJVzWcSVu7nW-069bext5W6Nizx4sfxIA",
+    authDomain: "edu-hub-c81b5.firebaseapp.com",
+    projectId: "edu-hub-c81b5",
+    storageBucket: "edu-hub-c81b5.appspot.com",
+    messagingSenderId: "560742513136",
+    appId: "1:560742513136:web:102edd272982704fdb8535",
+    measurementId: "G-78TC8XTPF7"
+};
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-    </script>
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-    <!-- JavaScript for Authentication and Modal -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const authButton = document.getElementById('auth-button');
-            const authModal = document.getElementById('auth-modal');
-            const closeModal = document.querySelector('.close');
-            const googleLoginButton = document.getElementById('google-login');
-            const userNameSpan = document.getElementById('user-name');
-            const logoutButton = document.getElementById('logout');
+// Elements
+const authPopup = document.getElementById('auth-popup');
+const closePopup = document.getElementById('close-popup');
+const googleSignupBtn = document.getElementById('google-signup');
+const authForm = document.getElementById('auth-form');
+const userInfo = document.getElementById('user-info');
+const userName = document.getElementById('user-name');
+const logoutBtn = document.getElementById('logout-btn');
+const authMessage = document.getElementById('auth-message');
+const showAuthBtn = document.getElementById('show-auth-btn');
+const showSignup = document.getElementById('show-signup');
+const showLogin = document.getElementById('show-login');
+const forgotPassword = document.getElementById('forgot-password');
 
-            authButton.addEventListener('click', () => {
-                authModal.classList.remove('hidden');
+// Firebase Auth
+const auth = firebase.auth();
+
+function showPopup() {
+    authPopup.classList.remove('hidden');
+}
+
+function hidePopup() {
+    authPopup.classList.add('hidden');
+}
+
+function updateUI(user) {
+    if (user) {
+        userInfo.classList.remove('hidden');
+        userName.textContent = `Welcome, ${user.displayName || user.email}`;
+        showAuthBtn.classList.add('hidden');
+        hidePopup();
+    } else {
+        userInfo.classList.add('hidden');
+        showAuthBtn.classList.remove('hidden');
+    }
+}
+
+auth.onAuthStateChanged((user) => {
+    updateUI(user);
+});
+
+showAuthBtn.addEventListener('click', () => {
+    showPopup();
+});
+
+closePopup.addEventListener('click', hidePopup);
+
+googleSignupBtn.addEventListener('click', () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider).then((result) => {
+        updateUI(result.user);
+    }).catch((error) => {
+        authMessage.textContent = `Error: ${error.message}`;
+    });
+});
+
+authForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const isSignup = authForm.querySelector('button').textContent === 'Sign Up';
+
+    if (isSignup) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                updateUI(userCredential.user);
+            })
+            .catch((error) => {
+                authMessage.textContent = `Error: ${error.message}`;
             });
-
-            closeModal.addEventListener('click', () => {
-                authModal.classList.add('hidden');
+    } else {
+        auth.signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                updateUI(userCredential.user);
+            })
+            .catch((error) => {
+                authMessage.textContent = `Error: ${error.message}`;
             });
+    }
+});
 
-            googleLoginButton.addEventListener('click', () => {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                auth.signInWithPopup(provider)
-                    .then((result) => {
-                        const user = result.user;
-                        userNameSpan.textContent = `Hello, ${user.displayName}`;
-                        userNameSpan.classList.remove('hidden');
-                        authModal.classList.add('hidden');
-                        authButton.classList.add('hidden');
-                        logoutButton.classList.remove('hidden');
-                    })
-                    .catch((error) => {
-                        console.error('Error during Google sign-in:', error);
-                    });
-            });
+logoutBtn.addEventListener('click', () => {
+    auth.signOut().then(() => {
+        updateUI(null);
+    });
+});
 
-            logoutButton.addEventListener('click', () => {
-                auth.signOut().then(() => {
-                    userNameSpan.classList.add('hidden');
-                    authButton.classList.remove('hidden');
-                    logoutButton.classList.add('hidden');
-                }).catch((error) => {
-                    console.error('Error during sign-out:', error);
-                });
-            });
+showSignup.addEventListener('click', (e) => {
+    e.preventDefault();
+    authForm.reset();
+    authForm.querySelector('button').textContent = 'Sign Up';
+    document.getElementById('auth-header').textContent = 'Sign Up';
+    document.getElementById('auth-instruction').textContent = 'Create an account:';
+    authMessage.textContent = '';
+});
 
-            auth.onAuthStateChanged((user) => {
-                if (user) {
-                    userNameSpan.textContent = `Hello, ${user.displayName}`;
-                    userNameSpan.classList.remove('hidden');
-                    authButton.classList.add('hidden');
-                    logoutButton.classList.remove('hidden');
-                } else {
-                    userNameSpan.classList.add('hidden');
-                    authButton.classList.remove('hidden');
-                    logoutButton.classList.add('hidden');
-                }
+showLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    authForm.reset();
+    authForm.querySelector('button').textContent = 'Log In';
+    document.getElementById('auth-header').textContent = 'Log In';
+    document.getElementById('auth-instruction').textContent = 'Log in to your account:';
+    authMessage.textContent = '';
+});
+
+forgotPassword.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = prompt("Please enter your email address:");
+    if (email) {
+        auth.sendPasswordResetEmail(email)
+            .then(() => {
+                alert('Password reset email sent!');
+            })
+            .catch((error) => {
+                authMessage.textContent = `Error: ${error.message}`;
             });
-        });
+    }
+});
+
+        
     </script>
 </body>
 </html>
