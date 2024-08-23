@@ -1,9 +1,10 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
@@ -11,6 +12,12 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
 }
 
 footer {
@@ -19,6 +26,73 @@ footer {
     text-align: center;
     padding: 15px 20px;
     border-top: 4px solid #ff6600;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Utility Buttons Section */
+#utility-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+}
+
+.button-card {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.btn-card {
+    display: block;
+    background-color: #ff6600;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-card:hover {
+    background-color: #e65c00;
+    transform: scale(1.05);
+}
+
+/* Category Buttons Section */
+#category-buttons {
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+#category-buttons h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #ff6600;
+}
+
+.button-category {
+    margin: 10px;
+    display: inline-block;
+}
+
+.btn-category {
+    display: block;
+    background-color: #ff6600;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-category:hover {
+    background-color: #e65c00;
+    transform: scale(1.05);
 }
 
 /* Blog Layout */
@@ -27,6 +101,7 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
+    background-color: #fff;
 }
 
 .blog-posts article {
@@ -35,30 +110,17 @@ footer {
     padding: 15px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .blog-posts article:hover {
     transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .blog-posts img {
     max-width: 100%;
     border-radius: 4px;
-}
-
-.share-buttons {
-    margin-top: 10px;
-}
-
-.share-buttons a {
-    margin-right: 10px;
-}
-
-.share-buttons img {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
 }
 
 /* Controls */
@@ -76,11 +138,12 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 #controls .btn:hover {
     background-color: #e65c00;
+    transform: scale(1.05);
 }
 
 #controls .dropdown {
@@ -88,6 +151,11 @@ footer {
     border-radius: 5px;
     border: 1px solid #ddd;
     font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#controls .dropdown:hover {
+    border-color: #ff6600;
 }
 
 /* Post Content */
@@ -100,13 +168,91 @@ footer {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.post-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.post-content {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Author Tick */
 .author-tick {
     color: green;
     font-size: 16px;
     margin-left: 5px;
 }
 
-/* Add some spacing for author section */
-#post-content p {
-    margin-bottom: 20px;
+/* Social Share Buttons */
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.share-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.share-button:hover {
+    background-color: #ff6600;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.share-button i {
+    font-size: 18px;
+}
+
+/* Utility Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hidden {
+    display: none;
+}
+/* Install Button Styles */
+.install-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.install-btn:hover {
+    background-color: #e65c00;
+    transform: scale(1.1);
+}
+
+.install-btn.hidden {
+    display: none;
 }

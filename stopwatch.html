@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Timer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .timer-container {
+            perspective: 1000px;
+            text-align: center;
+        }
+
+        .border {
+            width: 220px;
+            height: 120px;
+            border: 10px solid #61dafb;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            transform: rotateX(30deg) rotateY(30deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .time {
+            color: #61dafb;
+            font-size: 1.8em;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            color: white;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #21a1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <div class="border">
+            <div class="time" id="time">00:00:00:000</div>
+        </div>
+        <div class="buttons">
+            <button class="button" id="startButton"><i class="fas fa-play"></i></button>
+            <button class="button" id="resetButton"><i class="fas fa-redo"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let timer;
+        let milliseconds = 0;
+        let running = false;
+
+        function formatTime(milliseconds) {
+            const ms = (milliseconds % 1000).toString().padStart(3, '0');
+            const seconds = Math.floor(milliseconds / 1000);
+            const hrs = Math.floor(seconds / 3600).toString().padStart(2, '0');
+            const mins = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            return `${hrs}:${mins}:${secs}:${ms}`;
+        }
+
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            timeElement.textContent = formatTime(milliseconds);
+        }
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            if (!running) {
+                timer = setInterval(() => {
+                    milliseconds += 100;
+                    updateTime();
+                }, 100);
+                running = true;
+                document.getElementById('startButton').innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                clearInterval(timer);
+                running = false;
+                document.getElementById('startButton').innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+
+        document.getElementById('resetButton').addEventListener('click', () => {
+            clearInterval(timer);
+            milliseconds = 0;
+            updateTime();
+            running = false;
+            document.getElementById('startButton').innerHTML = '<i class="fas fa-play"></i>';
+        });
+
+        updateTime();
+    </script>
+</body>
+</html>
