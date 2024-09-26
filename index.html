@@ -12,6 +12,17 @@
 <body>
     <header>
         <h1>EDU HUB</h1>
+      <div id="profile" class="profile-icon">
+            <i class="fa fa-user-circle"></i>
+            <div class="popup" id="popup">
+                <div id="user-info" class="hidden"></div>
+                <button id="logout-btn" class="hidden" class="btn-logout">Logout</button>
+                <div id="auth-buttons">
+                    <button id="login-btn" class="btn-login" >Login</button>
+                    <button id="signup-btn" class="btn-signup">Sign Up</button>
+                </div>
+            </div>
+        </div>
     </header>
     
     <!-- Additional Section for Buttons -->
@@ -125,6 +136,68 @@
             installButton.classList.add('hidden');
         });
     </script>
+  <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCotpjWvQ5cG5cOpgiNvpAS4ftvwKRO_N0",
+            authDomain: "eduhub-a3762.firebaseapp.com",
+            projectId: "eduhub-a3762",
+            storageBucket: "eduhub-a3762.appspot.com",
+            messagingSenderId: "115221366217",
+            appId: "1:115221366217:web:d6cee26ef04752d1519418",
+            measurementId: "G-X1MQF5SR3Z"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const popup = document.getElementById("popup");
+        const userInfo = document.getElementById("user-info");
+        const logoutBtn = document.getElementById("logout-btn");
+        const profileIcon = document.getElementById("profile");
+
+        // Check auth state
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const firstName = user.email.split('@')[0];
+                const userEmail = user.email;
+                userInfo.innerHTML = `<strong>${firstName.charAt(0).toUpperCase() + firstName.slice(1)}</strong><br>${userEmail}`;
+                userInfo.classList.remove("hidden");
+                logoutBtn.classList.remove("hidden");
+                document.getElementById("auth-buttons").classList.add("hidden");
+            } else {
+                userInfo.classList.add("hidden");
+                logoutBtn.classList.add("hidden");
+                document.getElementById("auth-buttons").classList.remove("hidden");
+            }
+        });
+
+        // Event listener for profile icon click
+        profileIcon.addEventListener("click", () => {
+            popup.classList.toggle("active");
+        });
+
+        // Event listeners for auth buttons
+        document.getElementById("login-btn").addEventListener("click", () => {
+            window.location.href = "user.html"; // Redirect to login page
+        });
+
+        document.getElementById("signup-btn").addEventListener("click", () => {
+            window.location.href = "user.html"; // Redirect to sign-up page
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth).then(() => {
+                console.log("User signed out");
+            }).catch((error) => {
+                console.error("Sign out error:", error);
+            });
+        });
+  </script>
     <script src="js/main.js"></script>
 </body>
 </html>
