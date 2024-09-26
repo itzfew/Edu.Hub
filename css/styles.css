@@ -23,7 +23,7 @@ header h1 {
     #profile {
             position: absolute;
             top: 20px;
-       lefttleft: 20px;
+       left: 20px;
             cursor: pointer;
         }
         .profile-icon {
