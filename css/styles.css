@@ -13,12 +13,61 @@ header {
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 header h1 {
     margin: 0;
     font-size: 2.5em;
 }
+    #profile {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .profile-icon {
+            font-size: 24px;
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            padding: 13px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .popup {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: black;
+            border: 5px solid #ddd;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .popup.active {
+            display: block;
+        }
+        .button-card, .button-category {
+            margin: 20px;
+        }
+        .btn-card, .btn-category {
+            text-decoration: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            color: #0583D2;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .btn-card:hover, .btn-category:hover {
+            background-color: #e2e2e2;
+        }
+        .hidden {
+            display: none;
+        }
 
 footer {
     background-color: #333;
@@ -227,6 +276,7 @@ footer {
 .hidden {
     display: none;
 }
+
 /* Install Button Styles */
 .install-btn {
     position: fixed;
@@ -256,7 +306,65 @@ footer {
 .install-btn.hidden {
     display: none;
 }
-    #install-button {
-        background-color: red; /* Make it stand out */
-        color: white;
-    }
+
+#install-button {
+    background-color: red; /* Make it stand out */
+    color: white;
+}
+
+/* Button Styles */
+#login-btn, #signup-btn {
+    background-color: #ff6600; /* Primary color */
+    color: #fff; /* Text color */
+    padding: 12px 20px; /* Padding for button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+    text-decoration: none; /* Remove underline for anchor */
+    display: inline-block; /* Make sure it behaves like a block */
+}
+
+/* Hover Effects */
+#login-btn:hover, #signup-btn:hover {
+    background-color: #e65c00; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Additional Styles for Accessibility */
+#login-btn:focus, #signup-btn:focus {
+    outline: 2px solid #ff9900; /* Outline for focus */
+    outline-offset: 2px; /* Space between outline and button */
+}
+
+
+/* Logout Button Styles */
+.btn-logout {
+    background-color: #d9534f; /* Red color for logout */
+    color: #fff; /* Text color */
+    padding: 12px 20px; /* Padding for button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Hover Effects */
+.btn-logout:hover {
+    background-color: #c9302c; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Additional Styles for Accessibility */
+.btn-logout:focus {
+    outline: 2px solid #f0ad4e; /* Outline for focus */
+    outline-offset: 2px; /* Space between outline and button */
+}
+
+
+#auth-buttons {
+    display: flex; /* Use flexbox for alignment */
+    gap: 10px; /* Adjust the gap as needed */
+}
