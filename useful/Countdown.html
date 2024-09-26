@@ -99,7 +99,7 @@
         }
 
         .exam.expired {
-            background: #f8d7da; /* Light red background for expired */
+            background: #f8d7da;
         }
 
         .countdown {
@@ -263,7 +263,7 @@
                 // Display upcoming exams
                 upcomingExams.forEach(exam => {
                     const daysLeft = Math.ceil((exam.date - Date.now()) / (1000 * 60 * 60 * 24));
-                    const percentage = ((exam.date - Date.now()) / (exam.date - Date.now() - 1000 * 60 * 60 * 24)) * 100;
+                    const percentage = (1 - (exam.date - Date.now()) / (exam.date - Date.now() + 1000 * 60 * 60 * 24)) * 100;
 
                     const examDiv = document.createElement('div');
                     examDiv.className = 'exam fade-in';
