@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+        }
+        h1 {
+            margin-bottom: 8%;
+            text-align: center;
+            font-family: "Fredoka One", cursive;
+            color: #0583D2;
+            letter-spacing: 0.1em;
+        }
+        .container {
+            background-color: white;
+            padding: 5%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            width: 40vw;
+            margin: 15vh auto;
+            transition: all 0.3s;
+        }
+        input {
+            margin-bottom: 3%;
+            padding: 3%;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 3%;
+            width: 100%;
+            background-color: #0583D2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            cursor: pointer;
+            background-color: #04659c;
+        }
+        #create-acct {
+            display: none;
+        }
+        .profile-container {
+            display: none; /* Hidden by default */
+            text-align: center;
+        }
+        .profile-icon {
+            font-size: 80px;
+            color: #0583D2;
+            border: 2px solid #0583D2;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            line-height: 90px;
+            margin: 20px auto;
+        }
+        .profile-details {
+            margin-top: 20px;
+        }
+        #logout, #home {
+            margin-top: 10px;
+            background-color: #ff3d3d;
+        }
+        #home {
+            background-color: #28a745;
+        }
+        #home:hover {
+            background-color: #218838;
+        }
+        #logout:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <h1>Sign In</h1>
+        <input id="email" type="text" placeholder="Email" required>
+        <input id="password" type="password" placeholder="Password" required>
+        <button id="submit">Submit</button>
+        <p><span>or</span></p>
+        <button id="sign-up">Sign Up</button>
+    </div>
+
+    <div class="container" id="create-acct">
+        <h1>Create an Account</h1>
+        <input id="email-signup" type="text" placeholder="Email *" required>
+        <input id="confirm-email-signup" type="text" placeholder="Confirm Email *" required>
+        <input id="password-signup" type="password" placeholder="Password *" required>
+        <input id="confirm-password-signup" type="password" placeholder="Confirm Password *" required>
+        <button id="create-acct-btn">Create Account</button>
+        <button id="return-btn">Return to Login</button>
+    </div>
+
+    <div class="container profile-container" id="profile-container">
+        <h1>Profile</h1>
+        <div class="profile-icon"><i class="fa fa-user-circle" aria-hidden="true"></i></div>
+        <div class="profile-details">
+            <p>Email: <span id="profile-email"></span></p>
+            <button id="logout">Logout</button>
+            <button id="home">Home</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCotpjWvQ5cG5cOpgiNvpAS4ftvwKRO_N0",
+            authDomain: "eduhub-a3762.firebaseapp.com",
+            projectId: "eduhub-a3762",
+            storageBucket: "eduhub-a3762.appspot.com",
+            messagingSenderId: "115221366217",
+            appId: "1:115221366217:web:d6cee26ef04752d1519418",
+            measurementId: "G-X1MQF5SR3Z"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const submitButton = document.getElementById("submit");
+        const signupButton = document.getElementById("sign-up");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const createacct = document.getElementById("create-acct");
+        const createacctbtn = document.getElementById("create-acct-btn");
+        const returnBtn = document.getElementById("return-btn");
+        const profileContainer = document.getElementById("profile-container");
+        const profileEmail = document.getElementById("profile-email");
+        const logoutButton = document.getElementById("logout");
+        const homeButton = document.getElementById("home");
+
+        // Check if user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                showProfile(user.email);
+            } else {
+                main.style.display = "block";
+                profileContainer.style.display = "none";
+            }
+        });
+
+        createacctbtn.addEventListener("click", async function() {
+            const signupEmail = document.getElementById("email-signup").value;
+            const confirmSignupEmail = document.getElementById("confirm-email-signup").value;
+            const signupPassword = document.getElementById("password-signup").value;
+            const confirmSignUpPassword = document.getElementById("confirm-password-signup").value;
+
+            if (signupEmail !== confirmSignupEmail) {
+                alert("Email fields do not match. Try again.");
+                return;
+            }
+            if (signupPassword !== confirmSignUpPassword) {
+                alert("Password fields do not match. Try again.");
+                return;
+            }
+            if (!signupEmail || !signupPassword) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
+            try {
+                await createUserWithEmailAndPassword(auth, signupEmail, signupPassword);
+                alert("Success! Account created.");
+            } catch (error) {
+                alert("Error occurred: " + error.message);
+            }
+        });
+
+        submitButton.addEventListener("click", async function() {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                alert("Success! Welcome back!");
+            } catch (error) {
+                alert("Error occurred: " + error.message);
+            }
+        });
+
+        signupButton.addEventListener("click", function() {
+            document.getElementById("main").style.display = "none";
+            createacct.style.display = "block";
+        });
+
+        returnBtn.addEventListener("click", function() {
+            document.getElementById("main").style.display = "block";
+            createacct.style.display = "none";
+        });
+
+        logoutButton.addEventListener("click", async function() {
+            await auth.signOut();
+            document.getElementById("main").style.display = "block";
+            createacct.style.display = "none";
+            profileContainer.style.display = "none";
+        });
+
+        homeButton.addEventListener("click", function() {
+            window.location.href = "index.html"; // Redirect to home page
+        });
+
+        function showProfile(email) {
+            profileEmail.textContent = email;
+            document.getElementById("main").style.display = "none";
+            createacct.style.display = "none";
+            profileContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
