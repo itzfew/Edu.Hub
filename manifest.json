@@ -2,7 +2,7 @@
     "name": "Edu Hub",
     "short_name": "Edu Hub",
     "description": "A hub for educational resources and articles.",
-    "start_url": "",
+    "start_url": "/index",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#ff6600",
