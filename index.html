@@ -1,107 +1,261 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Home</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Blog Home - Edu Hub</title>
+    <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#ff6600">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #000;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .profile-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .popup {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            border: 1px solid #ddd;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup.active {
+            display: block;
+        }
+
+        .btn-login, .btn-signup, .btn-logout {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .card-container, .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .card, .category-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-card, .btn-category {
+            display: block;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-card:hover, .btn-category:hover {
+            background-color: #000;
+            color: white;
+        }
+
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .controls-section .btn {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .controls-section .dropdown {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .blog-posts {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .install-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .install-btn.hidden {
+            display: none;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .popup {
+                top: 50px;
+            }
+
+            .controls-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>EDU HUB</h1>
-      <div id="profile" class="profile-icon">
-            <i class="fa fa-user-circle"></i>
-            <div class="popup" id="popup">
-                <div id="user-info" class="hidden"></div>
-                <button id="logout-btn" class="hidden" class="btn-logout">Logout</button>
-                <div id="auth-buttons">
-                    <button id="login-btn" class="btn-login" >Login</button>
-                    <button id="signup-btn" class="btn-signup">Sign Up</button>
+        <div class="header-container">
+            <h1>EDU HUB</h1>
+            <div id="profile" class="profile-icon">
+                <i class="fa fa-user-circle"></i>
+                <div class="popup" id="popup">
+                    <div id="user-info" class="hidden"></div>
+                    <button id="logout-btn" class="hidden btn-logout">Logout</button>
+                    <div id="auth-buttons">
+                        <button id="login-btn" class="btn-login">Login</button>
+                        <button id="signup-btn" class="btn-signup">Sign Up</button>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
-    
-    <!-- Additional Section for Buttons -->
-    <section id="utility-buttons">
-        <div class="button-card">
-            <a href="useful/omr.html" class="btn-card"><i class="fas fa-clipboard"></i> OMR Sheet</a>
-        </div>
-        <div class="button-card">
-            <a href="useful/calculate.html" class="btn-card"><i class="fas fa-calculator"></i> Calculator</a>
-        </div>
-        <div class="button-card">
-            <a href="useful/stopwatch.html" class="btn-card"><i class="fas fa-stopwatch"></i> Stopwatch</a>
-        </div>
-        <div class="button-card">
-            <a href="useful/streak.html" class="btn-card"><i class="fas fa-calendar-check"></i> Streak Tracker</a>
-        </div>
-     </div>
-        <div class="button-card">
-            <a href="useful/Countdown.html" class="btn-card"><i class="fas fa-clock"></i> Countdown Exams</a>
-        </div>
-     <div class="button-card">
-            <a href="useful/periodic-table.html" class="btn-card"><i class="fas fa-pen"></i> Periodic Table</a>
-        </div>
-    </section>
 
-    <!-- Section for Categories -->
-    <section id="category-buttons">
-        <h2>Explore Topics</h2>
-        <div class="button-category">
-            <a href="section2/neet.html" class="btn-category"><i class="fas fa-heartbeat"></i> NEET</a>
-        </div>
-        <div class="button-category">
-            <a href="section2/jee.html" class="btn-category"><i class="fas fa-cogs"></i> JEE</a>
-        </div>
-        <div class="button-category">
-            <a href="section2/boards.html" class="btn-category"><i class="fas fa-school"></i> Boards</a>
-        </div>
-        <div class="button-category">
-            <a href="section2/pyqs.html" class="btn-category"><i class="fas fa-book"></i> PYQs</a>
-        </div>
-        <div class="button-category">
-            <a href="section2/books.html" class="btn-category"><i class="fas fa-book-reader"></i> Books</a>
-        </div>
-        <div class="button-category">
-            <a href="section2/pdfs.html" class="btn-category"><i class="fas fa-file-pdf"></i> PDFs</a>
-        </div>
-    </section>
+    <main>
+        <section id="utility-buttons" class="card-container">
+            <div class="card">
+                <a href="useful/omr.html" class="btn-card"><i class="fas fa-clipboard"></i> OMR Sheet</a>
+            </div>
+            <div class="card">
+                <a href="useful/calculate.html" class="btn-card"><i class="fas fa-calculator"></i> Calculator</a>
+            </div>
+            <div class="card">
+                <a href="useful/stopwatch.html" class="btn-card"><i class="fas fa-stopwatch"></i> Stopwatch</a>
+            </div>
+            <div class="card">
+                <a href="useful/streak.html" class="btn-card"><i class="fas fa-calendar-check"></i> Streak Tracker</a>
+            </div>
+            <div class="card">
+                <a href="useful/Countdown.html" class="btn-card"><i class="fas fa-clock"></i> Countdown Exams</a>
+            </div>
+            <div class="card">
+                <a href="useful/periodic-table.html" class="btn-card"><i class="fas fa-pen"></i> Periodic Table</a>
+            </div>
+        </section>
 
+        <section id="category-buttons" class="category-container">
+            <h2>Explore Topics</h2>
+            <div class="category-card">
+                <a href="section2/neet.html" class="btn-category"><i class="fas fa-heartbeat"></i> NEET</a>
+            </div>
+            <div class="category-card">
+                <a href="section2/jee.html" class="btn-category"><i class="fas fa-cogs"></i> JEE</a>
+            </div>
+            <div class="category-card">
+                <a href="section2/boards.html" class="btn-category"><i class="fas fa-school"></i> Boards</a>
+            </div>
+            <div class="category-card">
+                <a href="section2/pyqs.html" class="btn-category"><i class="fas fa-book"></i> PYQs</a>
+            </div>
+            <div class="category-card">
+                <a href="section2/books.html" class="btn-category"><i class="fas fa-book-reader"></i> Books</a>
+            </div>
+            <div class="category-card">
+                <a href="section2/pdfs.html" class="btn-category"><i class="fas fa-file-pdf"></i> PDFs</a>
+            </div>
+        </section>
 
+        <section id="controls" class="controls-section">
+            <button class="btn" onclick="sortPosts('date')">Sort by Date</button>
+            <button class="btn" onclick="sortPosts('title')">Sort by Title</button>
+            <label for="filter">Filter by Category:</label>
+            <select id="filter" onchange="filterPosts()" class="dropdown">
+                <option value="">All Categories</option>
+                <option value="Education">EDUCATION</option>
+                <!-- Other categories -->
+            </select>
+        </section>
 
-    <section id="category-buttons">
-        <h2>Explore Topics</h2>
-        <!-- Category buttons go here -->
-    </section>
-
-    <section id="controls">
-        <button class="btn" onclick="sortPosts('date')">Sort by Date</button>
-        <button class="btn" onclick="sortPosts('title')">Sort by Title</button>
-        <label for="filter">Filter by Category:</label>
-        <select id="filter" onchange="filterPosts()" class="dropdown">
-            <option value="">All Categories</option>
-            <option value="Education">EDUCATION</option>
-            <!-- Other categories if needed -->
-        </select>
-    </section>
-
-    <section id="blog-posts" class="blog-posts">
-        <!-- Blog posts will be loaded here by JavaScript -->
-    </section>
+        <section id="blog-posts" class="blog-posts">
+            <!-- Blog posts will be dynamically loaded here by JavaScript -->
+        </section>
+    </main>
 
     <footer>
-        <p>© 2024 Edu Hub</p>
+        <p>&copy; 2024 Edu Hub</p>
     </footer>
-     <!-- Install Button -->
+
     <button id="install-button" class="install-btn hidden">
         <i class="fas fa-download"></i>
     </button>
 
-    <!-- Service Worker registration script -->
+    <!-- Service Worker & Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
     <script>
         let deferredPrompt;
         const installButton = document.getElementById('install-button');
@@ -204,8 +358,6 @@
                 console.error("Sign out error:", error);
             });
         });
-  </script>
-    <script src="js/main.js"></script>
+    </script>
 </body>
 </html>
-
