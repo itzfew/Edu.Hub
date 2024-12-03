@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>My App's RSS Feed</title>
+    <link>https://yourwebsite.com</link>
+    <description>Latest updates and news for my app.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Dec 2024 10:00:00 GMT</lastBuildDate>
+
+    <!-- Example Post 1 -->
+    <item>
+      <title>New Feature Update</title>
+      <link>https://yourwebsite.com/feature-update</link>
+      <description>We've added a new feature to improve your experience!</description>
+      <pubDate>Mon, 02 Dec 2024 15:00:00 GMT</pubDate>
+      <guid>https://yourwebsite.com/feature-update</guid>
+    </item>
+
+    <!-- Example Post 2 -->
+    <item>
+      <title>Bug Fixes and Performance Improvements</title>
+      <link>https://yourwebsite.com/bug-fixes</link>
+      <description>Resolved several bugs and optimized performance.</description>
+      <pubDate>Mon, 03 Dec 2024 09:00:00 GMT</pubDate>
+      <guid>https://yourwebsite.com/bug-fixes</guid>
+    </item>
+
+    <!-- Add more posts here -->
+  </channel>
+</rss>
