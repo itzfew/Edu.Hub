@@ -72,5 +72,38 @@
       <guid>jee-main-2025-exam-details</guid>
     </item>
 
+    <!-- Post 3: Study Material APK Update -->
+    <item>
+      <title>Study Material APK Update</title>
+      <description>
+        <![CDATA[
+        The latest update for the Study Material APK brings new features and improvements. 
+        Below are the details of the update and the available versions for download:
+        
+        <h3>Available Versions:</h3>
+        <ul>
+          <li><strong>Version 1.1</strong> - Initial release with basic study materials.</li>
+          <li><strong>Version 1.2</strong> - Added new subjects and interactive features.</li>
+          <li><strong>Version 1.3</strong> - Bug fixes and performance improvements.</li>
+        </ul>
+        
+        <h3>Download APK:</h3>
+        <ul>
+          <li><a href="https://example.com/download/study-material-v1.1.apk">Download Version 1.1</a></li>
+          <li><a href="https://example.com/download/study-material-v1.2.apk">Download Version 1.2</a></li>
+          <li><a href="https://example.com/download/study-material-v1.3.apk">Download Version 1.3</a></li>
+        </ul>
+
+        <h3>App Screenshots:</h3>
+        <img src="https://example.com/screenshots/screenshot1.png" alt="Screenshot 1" />
+        <img src="https://example.com/screenshots/screenshot2.png" alt="Screenshot 2" />
+        <h3>App Icon:</h3>
+        <img src="https://example.com/images/app-icon.png" alt="App Icon" />
+        ]]>
+      </description>
+      <pubDate>Mon, 03 Dec 2024 13:00:00 GMT</pubDate>
+      <guid>study-material-apk-update</guid>
+    </item>
+
   </channel>
 </rss>
