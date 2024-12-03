@@ -72,38 +72,47 @@
       <guid>jee-main-2025-exam-details</guid>
     </item>
 
-    <!-- Post 3: Study Material APK Update -->
     <item>
-      <title>Study Material APK Update</title>
-      <description>
-        <![CDATA[
-        The latest update for the Study Material APK brings new features and improvements. 
-        Below are the details of the update and the available versions for download:
-        
-        <h3>Available Versions:</h3>
-        <ul>
-          <li><strong>Version 1</strong> - Initial release with basic study materials.</li>
-          <li><strong>Version 2</strong> - soon.</li>
-          <li><strong>Version 3</strong> - soon/li>
-        </ul>
-        
-        <h3>Download APK:</h3>
-        <ul>
-          <li><a href="https://edu-hubs.pages.dev/Apk/Com_studymaterial_app_v1.apk">Download Version 1</a></li>
-          <li><a href="#">Download Version 2</a></li>
-          <li><a href="#">Download Version 3</a></li>
-        </ul>
+  <title>Study Material APK Update</title>
+  <description>
+    <![CDATA[
+    <h3>The latest update for the Study Material APK brings new features and improvements. Below are the details of the update and the available versions for download:</h3>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+      <tr>
+        <th colspan="2" style="text-align: center; background-color: #f2f2f2;">Study Material APK Update Details</th>
+      </tr>
+      <tr>
+        <td style="width: 30%; font-weight: bold;">Available Versions:</td>
+        <td>
+          <ul>
+            <li><strong>Version 1</strong> - Initial release with basic study materials.</li>
+            <li><strong>Version 2</strong> - Coming soon.</li>
+            <li><strong>Version 3</strong> - Coming soon.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 30%; font-weight: bold;">Download APK:</td>
+        <td>
+          <ul>
+            <li><a href="https://edu-hubs.pages.dev/Apk/Com_studymaterial_app_v1.apk" target="_blank">Download Version 1</a></li>
+            <li><a href="#" target="_blank">Download Version 2</a></li>
+            <li><a href="#" target="_blank">Download Version 3</a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 30%; font-weight: bold;">App Icon:</td>
+        <td><img src="https://edu-hubs.pages.dev/img/logo.png" alt="App Icon" style="max-width: 200px;"></td>
+      </tr>
+    </table>
+    ]]>
+  </description>
+  <pubDate>Mon, 03 Dec 2024 13:00:00 GMT</pubDate>
+  <guid>study-material-apk-update</guid>
+</item>
 
-        <h3>App Screenshots:</h3>
-        <img src="https://edu-hubs.pages.dev/img/1.jpg" alt="Screenshot 1" />
-        <img src="https://edu-hubs.pages.dev/img/2.jpg" alt="Screenshot 2" />
-        <h3>App Icon:</h3>
-        <img src="https://edu-hubs.pages.dev/img/logo.png" alt="App Icon" />
-        ]]>
-      </description>
-      <pubDate>Mon, 03 Dec 2024 13:00:00 GMT</pubDate>
-      <guid>study-material-apk-update</guid>
-    </item>
     
     <!-- Post 1: Akash Test Series 2024 -->
     <item>
