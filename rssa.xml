@@ -71,7 +71,8 @@
       <pubDate>Mon, 03 Dec 2024 12:30:00 GMT</pubDate>
       <guid>jee-main-2025-exam-details</guid>
     </item>
-<item>
+
+    <item>
   <title>Study Material APK Update</title>
   <description>
     <![CDATA[
@@ -111,7 +112,6 @@
   <pubDate>Mon, 03 Dec 2024 13:00:00 GMT</pubDate>
   <guid>study-material-apk-update</guid>
 </item>
-
 
     
     <!-- Post 1: Akash Test Series 2024 -->
@@ -316,10 +316,10 @@
       <pubDate>Mon, 03 Dec 2024 16:00:00 GMT</pubDate>
       <guid>neet-official-syllabus-and-2025-syllabus</guid>
     </item>
+
 <item>
-  <title>Khud Pe YAKEEN - Official Song - NEET 2024 Dropper - Physics Wallah - Alakh Sir</title>
-  <description>
-    <![CDATA[
+      <title>Khud Pe YAKEEN - Official Song - NEET 2024 Dropper - Physics Wallah - Alakh Sir</title>
+      <description><![CDATA[
     <p><strong>Podcast Title:</strong> Khud Pe YAKEEN - Official Song</p>
     <p><strong>Target Audience:</strong> NEET 2024 Droppers</p>
     <p><strong>By:</strong> Physics Wallah - Alakh Sir</p>
@@ -330,25 +330,23 @@
 
     <h3>Listen to the Podcast:</h3>
     <ul>
-      <li><a href="https://edu-hubs.pages.dev/audio/Khud%20Pe%20YAKEEN%20-%20Official%20Song%20_%20NEET%202024%20Dropper%20_%20Physics%20Wallah%20_%20Alakh%20Sir%20_%20Prateek%20Sahaii.mp3">Listen Now</a></li>
+      <li><a href="">Listen Now</a></li>
     </ul>
 
     <h3>Related Image:</h3>
     <img src="https://edu-hubs.pages.dev/audio/Neet%20Motivation%20by%20Sir%20Alakh.jpg" alt="Khud Pe YAKEEN Official Song Image">
-    ]]>
-  </description>
-  <pubDate>Mon, 03 Dec 2024 13:00:00 GMT</pubDate>
-  <guid>khud-pe-yakeen-podcast-2024</guid>
-  <enclosure url="https://edu-hubs.pages.dev/audio/Khud%20Pe%20YAKEEN%20-%20Official%20Song%20_%20NEET%202024%20Dropper%20_%20Physics%20Wallah%20_%20Alakh%20Sir%20_%20Prateek%20Sahaii.mp3" length="10240000" type="audio/mpeg"/>
-  <itunes:duration>00:01:49</itunes:duration>
-  <itunes:episodeType>full</itunes:episodeType>
-  <itunes:explicit>no</itunes:explicit>
-  <itunes:summary>This official motivational podcast aims to inspire NEET 2024 dropper students to stay confident and focused on their goals. Alakh Sir from Physics Wallah shares valuable insights and wisdom to guide students on their journey.</itunes:summary>
-  <itunes:author>Physics Wallah - Alakh Sir</itunes:author>
-  <itunes:subtitle>Khud Pe YAKEEN - Official Song for NEET 2024 Dropper</itunes:subtitle>
-  <itunes:date>2024-12-03</itunes:date>
-  <itunes:time>13:00:00</itunes:time>
-</item>
+    ]]></description>
+      <pubDate>Mon, 03 Dec 2024 10:00:00 GMT</pubDate>
+      <enclosure url="https://edu-hubs.pages.dev/audio/Khud%20Pe%20YAKEEN%20-%20Official%20Song%20_%20NEET%202024%20Dropper%20_%20Physics%20Wallah%20_%20Alakh%20Sir%20_%20Prateek%20Sahaii.mp4" length="1024000" type="audio/mpeg"/>
+      <itunes:duration>00:01:49</itunes:duration>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:summary>This official motivational podcast aims to inspire NEET 2024 dropper students to stay confident and focused on their goals. Alakh Sir from Physics Wallah shares valuable insights and wisdom to guide students on their journey.</itunes:summary>
+      <itunes:author>PhysicsWallah</itunes:author>
+      <itunes:subtitle>Khud Pe YAKEEN - Official Song</itunes:subtitle>
+      <itunes:date>2024-12-03</itunes:date>
+      <itunes:time>00:01:49</itunes:time>
+    </item>
 
   </channel>
 </rss>
