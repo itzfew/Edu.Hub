@@ -88,10 +88,6 @@
     <!-- Detailed slides will be displayed here dynamically -->
 </div>
 
-<footer>
-    <p>&copy; 2024 My App. All Rights Reserved.</p>
-</footer>
-
 <script>
     // Function to fetch and parse the RSS feed
     async function fetchRSS() {
@@ -133,7 +129,6 @@
                 <h2>${title}</h2>
                 <p><strong>Published on:</strong> ${new Date(pubDate).toLocaleDateString()}</p>
                 <p>${description}</p>
-                <p><a href="${link}" target="_blank">Read More</a></p>
             `;
 
             slidesContainer.appendChild(slideDiv);
