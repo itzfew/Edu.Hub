@@ -1,81 +1,81 @@
 /* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
 header {
     background-color: #333;
     color: #fff;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2.5em;
+    font-size: 2em;
 }
-    #profile {
-            position: absolute;
-            top: 20px;
-       left: 20px;
-            cursor: pointer;
-        }
-        .profile-icon {
-            font-size: 24px;
-            color: white;
-            border: 2px solid white;
-            border-radius: 50%;
-            padding: 13px;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .popup {
-            display: none;
-            position: absolute;
-            top: 20px;
-        left: 20px;
-            background-color: black;
-            border: 5px solid #ddd;
-            border-radius: 5px;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .popup.active {
-            display: block;
-        }
-        .button-card, .button-category {
-            margin: 20px;
-        }
-        .btn-card, .btn-category {
-            text-decoration: none;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: white;
-            color: #0583D2;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        .btn-card:hover, .btn-category:hover {
-            background-color: #e2e2e2;
-        }
-        .hidden {
-            display: none;
-        }
 
-footer {
+/* Profile Icon */
+#profile {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
+.profile-icon {
+    font-size: 24px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 13px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 20px;
     background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 15px 20px;
-    border-top: 4px solid #ff6600;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+.popup.active {
+    display: block;
+}
+
+.popup .btn-logout {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup .btn-logout:hover {
+    background-color: #c9302c;
+}
+
+#auth-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
 /* Utility Buttons Section */
@@ -83,29 +83,34 @@ footer {
     display: flex;
     justify-content: space-around;
     padding: 20px;
-    background-color: #fff;
-    border-bottom: 2px solid #ddd;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
 }
 
 .button-card {
     flex: 1;
     margin: 0 10px;
+    text-align: center;
 }
 
 .btn-card {
-    display: block;
-    background-color: #ff6600;
+    background-color: #333;
     color: #fff;
     padding: 15px;
-    text-align: center;
     text-decoration: none;
     border-radius: 8px;
-    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: background-color 0.3s, transform 0.3s;
 }
 
+.btn-card i {
+    margin-right: 8px;
+}
+
 .btn-card:hover {
-    background-color: #e65c00;
+    background-color: #555;
     transform: scale(1.05);
 }
 
@@ -119,7 +124,7 @@ footer {
 #category-buttons h2 {
     margin-bottom: 20px;
     font-size: 2em;
-    color: #ff6600;
+    color: #333;
 }
 
 .button-category {
@@ -129,7 +134,7 @@ footer {
 
 .btn-category {
     display: block;
-    background-color: #ff6600;
+    background-color: #333;
     color: #fff;
     padding: 15px;
     text-align: center;
@@ -140,7 +145,7 @@ footer {
 }
 
 .btn-category:hover {
-    background-color: #e65c00;
+    background-color: #555;
     transform: scale(1.05);
 }
 
@@ -150,11 +155,10 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
-    background-color: #fff;
 }
 
 .blog-posts article {
-    border: 2px solid #eee;
+    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
     background-color: #fff;
@@ -179,7 +183,7 @@ footer {
 }
 
 #controls .btn {
-    background-color: #ff6600;
+    background-color: #333;
     border: none;
     color: #fff;
     padding: 10px 20px;
@@ -191,7 +195,7 @@ footer {
 }
 
 #controls .btn:hover {
-    background-color: #e65c00;
+    background-color: #555;
     transform: scale(1.05);
 }
 
@@ -204,77 +208,16 @@ footer {
 }
 
 #controls .dropdown:hover {
-    border-color: #ff6600;
+    border-color: #333;
 }
 
-/* Post Content */
-#post-content {
-    background: #fff;
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.post-image {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.post-content {
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-/* Author Tick */
-.author-tick {
-    color: green;
-    font-size: 16px;
-    margin-left: 5px;
-}
-
-/* Social Share Buttons */
-.share-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.share-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background-color: #f0f0f0;
-    border-radius: 50%;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s, transform 0.3s;
-}
-
-.share-button:hover {
-    background-color: #ff6600;
+/* Footer */
+footer {
+    background-color: #333;
     color: #fff;
-    transform: scale(1.1);
-}
-
-.share-button i {
-    font-size: 18px;
-}
-
-/* Utility Styles */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.hidden {
-    display: none;
+    text-align: center;
+    padding: 15px 20px;
+    border-top: 4px solid #ff6600;
 }
 
 /* Install Button Styles */
@@ -282,7 +225,7 @@ footer {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #ff6600;
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -291,15 +234,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 24px;
-    transition: background-color 0.3s, transform 0.3s;
-    z-index: 1000; /* Ensure it stays on top */
+    z-index: 1000;
 }
 
 .install-btn:hover {
-    background-color: #e65c00;
+    background-color: #555;
     transform: scale(1.1);
 }
 
@@ -307,64 +248,63 @@ footer {
     display: none;
 }
 
-#install-button {
-    background-color: red; /* Make it stand out */
-    color: white;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    #utility-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-card {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .blog-posts {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .blog-posts article {
+        padding: 10px;
+    }
 }
 
-/* Button Styles */
-#login-btn, #signup-btn {
-    background-color: #ff6600; /* Primary color */
-    color: #fff; /* Text color */
-    padding: 12px 20px; /* Padding for button */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
-    text-decoration: none; /* Remove underline for anchor */
-    display: inline-block; /* Make sure it behaves like a block */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    #profile {
+        top: 10px;
+        left: 10px;
+    }
+
+    .popup {
+        left: 10px;
+        top: 40px;
+        padding: 15px;
+    }
+
+    .btn-card, .btn-category {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .install-btn {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
 }
 
-/* Hover Effects */
-#login-btn:hover, #signup-btn:hover {
-    background-color: #e65c00; /* Darker shade on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-/* Additional Styles for Accessibility */
-#login-btn:focus, #signup-btn:focus {
-    outline: 2px solid #ff9900; /* Outline for focus */
-    outline-offset: 2px; /* Space between outline and button */
-}
-
-
-/* Logout Button Styles */
-.btn-logout {
-    background-color: #d9534f; /* Red color for logout */
-    color: #fff; /* Text color */
-    padding: 12px 20px; /* Padding for button */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
-}
-
-/* Hover Effects */
-.btn-logout:hover {
-    background-color: #c9302c; /* Darker shade on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-/* Additional Styles for Accessibility */
-.btn-logout:focus {
-    outline: 2px solid #f0ad4e; /* Outline for focus */
-    outline-offset: 2px; /* Space between outline and button */
-}
-
-
-#auth-buttons {
-    display: flex; /* Use flexbox for alignment */
-    gap: 10px; /* Adjust the gap as needed */
+/* Button Hover Effect */
+.btn-card:hover, .btn-category:hover {
+    background-color: #444;
+    transform: scale(1.05);
 }
