@@ -17,6 +17,7 @@
             line-height: 1.6;
             background-color: #f4f4f4;
             padding: 20px;
+            color: #333;
         }
 
         header {
@@ -28,20 +29,70 @@
             color: #333;
         }
 
-        .post-container {
+        .post-content {
             background-color: white;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             margin: 0 auto;
-            max-width: 800px;
+            max-width: 900px;
+            box-sizing: border-box;
+        }
+
+        .post-content h2 {
+            color: #333;
+        }
+
+        .post-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .post-footer p {
+            font-size: 1em;
+            color: #888;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .share-buttons button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .share-buttons button:hover {
+            background-color: #0056b3;
         }
 
         footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
             color: #888;
         }
+
     </style>
 </head>
 <body>
@@ -51,7 +102,7 @@
     </header>
 
     <section id="post-content">
-        <div class="post-container" id="post-container">
+        <div class="post-content" id="post-container">
             <!-- Full post content will be loaded here -->
         </div>
     </section>
@@ -73,15 +124,59 @@
 
             if (post) {
                 const postContainer = document.getElementById('post-container');
-                postContainer.innerHTML = `
+                let postContent = `
                     <h2>${post.title}</h2>
                     <p><strong>Author:</strong> ${post.author}</p>
                     <p><strong>Category:</strong> ${post.category}</p>
-                    <p>${post.content}</p>
+                    <p><strong>Date:</strong> ${new Date(post.date).toLocaleDateString()}</p>
                 `;
+                
+                // If there is an image, include it in the post
+                if (post.image) {
+                    postContent += `<img src="${post.image}" alt="Post Image">`;
+                }
+
+                postContent += `
+                    <div>${post.content}</div>
+                    <div class="post-footer">
+                        <p><strong>Tags:</strong> ${post.tags.join(', ')}</p>
+                        <div class="share-buttons">
+                            <button onclick="sharePost()"><i class="fas fa-share"></i> Share</button>
+                            <button onclick="copyText()"><i class="fas fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                `;
+
+                postContainer.innerHTML = postContent;
             } else {
                 document.getElementById('post-container').innerHTML = '<p>Post not found.</p>';
             }
+        }
+
+        // Share Post Function
+        function sharePost() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                });
+            } else {
+                alert("Sharing is not supported on this browser.");
+            }
+        }
+
+        // Copy Post Content Function
+        function copyText() {
+            const textToCopy = document.getElementById('post-container').innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Post content copied to clipboard!');
+            }).catch(err => {
+                console.log('Error copying text: ', err);
+            });
         }
     </script>
 
