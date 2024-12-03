@@ -2,7 +2,6 @@
 <rss version="2.0">
   <channel>
     <title>My App's RSS Feed</title>
-    <link>https://yourwebsite.com</link>
     <description>Latest updates and news for my app.</description>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Dec 2024 12:30:00 GMT</lastBuildDate>
@@ -10,9 +9,6 @@
     <!-- Post 1: NEET 2025 Syllabus -->
     <item>
       <title>NEET 2025 Syllabus</title>
-      <link>
-        #
-      </link>
       <description>
         <![CDATA[
         The NEET UG syllabus consists of three major subjects: Physics, Chemistry, and Biology. 
@@ -21,15 +17,12 @@
         ]]>
       </description>
       <pubDate>Mon, 03 Dec 2024 12:00:00 GMT</pubDate>
-      <guid>
-        #
-      </guid>
+      <guid>neet-2025-syllabus</guid>
     </item>
 
     <!-- Post 2: JEE Main 2025 Exam Details -->
     <item>
       <title>JEE Main 2025 Exam Details</title>
-      <link>#</link>
       <description>
         <![CDATA[
         The JEE Main 2025 exam will consist of two papers. Paper 1 is usually conducted for admission into the BTech programs in various NITs, IITs, and GFTIs, 
@@ -76,8 +69,7 @@
         ]]>
       </description>
       <pubDate>Mon, 03 Dec 2024 12:30:00 GMT</pubDate>
-      <guid>
-        #</guid>
+      <guid>jee-main-2025-exam-details</guid>
     </item>
 
   </channel>
